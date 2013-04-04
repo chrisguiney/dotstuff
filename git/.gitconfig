@@ -1,0 +1,42 @@
+[alias]
+  c = commit -m
+  aa= !git add -A && git status
+  cob = checkout -b
+  pushdesign = !git push origin HEAD && git checkout design && git pull && git merge @{-1} && git push origin design && git status && git checkout @{-1}
+  s = !git status
+  l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+  ll = log --stat --abbrev-commit
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  praise = !ruby /home/dev/praise.rb
+  df = diff --color --color-words --abbrev
+[user]
+	email = Shiem.Edelbrock@thecontrolgroup.com
+	name = Shiem Edelbrock
+[core]
+	excludesfile = /home/dev/.gitignore_global
+[color]
+	ui = always
+[apply]
+	whitespace = fix
+[core]
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
+	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+	editor = vim
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[merge]
+	log = true
+[diff]
+	tool = vimdiff

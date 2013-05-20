@@ -239,3 +239,39 @@ map ,f :FufFile <CR>
 "get the system clipboard to work with vim
 set clipboard=unnamed
 
+" new tab
+
+noremap <C-t>     :tabnew<CR>
+inoremap <C-t>     <Esc>:tabnew<CR>
+
+noremap <C-w>     :tabclose<CR>
+inoremap <C-w>     <Esc>:tabclose<CR>
+
+
+noremap <C-S-Right> :tabnext<CR>
+inoremap <C-S-Right> <Esc>:tabnext<CR>
+
+nmap <C-t> :tabnew<cr>
+nmap <C-w> :close<cr>
+nmap <C-1> 1gt
+nmap <C-2> 2gt
+nmap <C-3> 3gt
+nmap <C-4> 4gt
+nmap <C-5> 5gt
+nmap <C-6> 6gt
+nmap <C-7> 7gt
+nmap <C-8> 8gt
+nmap <C-9> 9gt
+nmap <C-0> 10gt
+
+nmap <C-Up> :tabnew<CR>
+nmap <Leader><Right> :tabNext<CR>
+nmap <Leader><Left> :tabprevious<CR>
+
+"FuzzyFinder
+nmap <C-f> :FufFileWithFullCwd<CR>
+nmap <C-f-b> :FufBuffer<CR>
+"
+""Whitespace remover
+nmap <C-D-w> :%s/\s\+$//<CR>
+

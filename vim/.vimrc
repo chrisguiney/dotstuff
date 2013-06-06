@@ -10,15 +10,15 @@ call vundle#rc()
 " required!
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
-Bundle 'kchmck/vim-coffee-script'
+""Bundle 'kchmck/vim-coffee-script'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kshenoy/vim-signature'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'majutsushi/tagbar'
-"Bundle 'msanders/snipmate.vim'
+Bundle 'garbas/vim-snipmate'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
@@ -30,13 +30,25 @@ Bundle 'tpope/vim-surround'
 Bundle 'bufexplorer.zip'
 "Bundle 'snipmate-snippets'
 "Bundle 'better-snipmate-snippet'
-Bundle 'superSnipMate'
+""Bundle 'superSnipMate'
 Bundle 'SuperTab-continued.'
 Bundle 'less-syntax'
 Bundle 'The-NERD-Commenter'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'gitv'
-Bundle 'vim-less'
+""Bundle 'vim-less'
+Bundle 'ZenCoding.vim'
+Bundle 'Conque-Shell'
+Bundle 'ack.vim'
+Bundle 'AutoClose'
+Bundle 'PIV'
+Bundle 'Syntastic'
+Bundle 'vim-addon-mw-utils'
+Bundle 'tlib'
+
+""Bundle 'neocomplcache'
+""Bundle 'neocomplcache-snippets_complete'
+
 
 "load ftplugins and indent files
 filetype plugin on
@@ -222,6 +234,9 @@ nmap <CR> :write<CR>
 let g:EasyMotion_leader_key = ';'
 nmap s ;w
 nmap S ;b
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+
 
 " Relative numbers when not in insert mode
 au BufEnter * :set rnu
@@ -251,6 +266,9 @@ inoremap <C-w>     <Esc>:tabclose<CR>
 noremap <C-S-Right> :tabnext<CR>
 inoremap <C-S-Right> <Esc>:tabnext<CR>
 
+noremap <C-S-Left> :tabprevious<CR>
+inoremap <C-S-Left> <Esc>:tabprevious<CR>
+
 nmap <C-t> :tabnew<cr>
 nmap <C-w> :close<cr>
 nmap <C-1> 1gt
@@ -275,3 +293,10 @@ nmap <C-f-b> :FufBuffer<CR>
 ""Whitespace remover
 nmap <C-D-w> :%s/\s\+$//<CR>
 
+"SuperTab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+"Zen Coding
+let g:user_zen_expandabbr_key = '<c-e>'
+let g:use_zen_complete_tag = 1

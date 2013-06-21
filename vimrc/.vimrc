@@ -34,10 +34,13 @@ Bundle 'gitv'
 Bundle 'vim-less'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'scrooloose/syntastic'
-Bundle 'ack.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'mattn/zencoding-vim'
 Bundle 'SirVer/ultisnips'
+Bundle 'mileszs/ack.vim'
+Bundle 'stephpy/vim-phpdoc'
+
+
 "load ftplugins and indent files
 filetype plugin on
 filetype indent on
@@ -69,8 +72,8 @@ set noswapfile
 set viminfo=
 
 "indent settings
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoindent
 
@@ -206,20 +209,22 @@ nmap <C-f-b> :FufFileWithCurrentBufferDir<CR>
 "get the system clipboard to work with vim
 set clipboard=unnamed
 
+set switchbuf+=usetab,newtab
+
 
 " Working with tabs
-noremap <C-t>     :tabnew<CR>
-inoremap <C-t>     <Esc>:tabnew<CR>
+noremap <D-t>     :tabnew<CR>
+inoremap <D-t>     <Esc>:tabnew<CR>
 
-noremap <C-w>     :tabclose<CR>
-inoremap <C-w>     <Esc>:tabclose<CR>
+noremap <D-w>     :tabclose<CR>
+inoremap <D-w>     <Esc>:tabclose<CR>
 
 
-map <C-Right> :tabnext<CR>
-inoremap <C-Right> :tabnext<CR>
+map <D-Right> :tabnext<CR>
+inoremap <D-Right> :tabnext<CR>
 
-map <C-Left> :tabprevious<CR>
-noremap <C-Left> :tabprevious<CR>
+map <D-Left> :tabprevious<CR>
+noremap <D-Left> :tabprevious<CR>
 
 "Whitespace remover
 nmap <C-D-w> :%s/\s\+$//<CR>
@@ -297,8 +302,15 @@ vmap <D-/> <plug>NERDCommenterToggle<CR>gv
 "save and quit becuase I'm stupid
 map <D-s> :w<CR>
 
+"sublime style surround
+nmap <C-"> viwS"
 
 let g:user_zen_expandabbr_key='<C-e>'
 let g:use_zen_complete_tag = 1
 
 let g:UltiSnipsUsePythonVersion = 2
+
+inoremap <Leader>8 <ESC>:call PhpDocSingle()<CR>i 
+nnoremap <Leader>8 :call PhpDocSingle()<CR> 
+vnoremap <Leader>8 :call PhpDocRange()<CR> 
+let g:pdv_cfg_Author = "Shiem Edelbrock <shiem.edelbrock@thecontrolgroup.com>"

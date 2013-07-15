@@ -1,13 +1,19 @@
+"TEST AREA
+
+"Shit I am testing that gets to graduate into the VIMRC
+
+
 "Use Vim settings, rather then Vi settings (much better!).
 "This must be first, because it changes other options as a side effect.
 set nocompatible
-filetype off
+filetype plugin on
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
+Bundle "wesleyche/SrcExpl"
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'ervandew/supertab'
@@ -163,7 +169,7 @@ let g:ctrlp_split_window = 1 " <CR> = New Tab" Function key mappings
 set cursorline
 
 " Set the tag file search order
-set tags=./tags
+set tags=tags;
 
 " User ack not grep
 set grepprg=ack
@@ -201,38 +207,24 @@ map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "fuzzyFinder maping
-map ,f :FufFile <CR>
-map <leader>f :FufFile <C-R>=expand("%:p:h") . "/" <enter><CR>
+map <leader>f :FufFile <CR>
+nmap <,-f> :FufFileWithCurrentBufferDir<CR>
 nmap <C-f> :FufFileWithFullCwd<CR>
-nmap <C-f-b> :FufFileWithCurrentBufferDir<CR>
 
 "get the system clipboard to work with vim
 set clipboard=unnamed
 
+" Working with tabs
 set switchbuf+=usetab,newtab
 
-
-" Working with tabs
-noremap <D-t>     :tabnew<CR>
-inoremap <D-t>     <Esc>:tabnew<CR>
-
-noremap <D-w>     :tabclose<CR>
-inoremap <D-w>     <Esc>:tabclose<CR>
-
-
-map <D-Right> :tabnext<CR>
-inoremap <D-Right> :tabnext<CR>
-
-map <D-Left> :tabprevious<CR>
-noremap <D-Left> :tabprevious<CR>
-
 "Whitespace remover
-nmap <C-D-w> :%s/\s\+$//<CR>
+nmap <C-w> :%s/\s\+$//<CR>
 
 " some custom macvim stuff
-"if has("gui_macvim")
-"  let macvim_hig_shift_movement = 1
-"endif
+if has("gui_macvim")
+    set macmeta
+endif
+
 set guifont=Source\ Code\ Pro\ Light:h18
 
 " code checking
@@ -296,11 +288,11 @@ nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 nnoremap <C-B> :BufExplorer<cr>
 
 "better commenting
-map <D-/> <plug>NERDCommenterToggle<CR>
-vmap <D-/> <plug>NERDCommenterToggle<CR>gv
+map <C-/> <plug>NERDCommenterToggle<CR>
+vmap <C-/> <plug>NERDCommenterToggle<CR>gv
 
 "save and quit becuase I'm stupid
-map <D-s> :w<CR>
+map <C-s> :w<CR>
 
 "sublime style surround
 nmap <C-"> viwS"
@@ -310,7 +302,53 @@ let g:use_zen_complete_tag = 1
 
 let g:UltiSnipsUsePythonVersion = 2
 
-inoremap <Leader>8 <ESC>:call PhpDocSingle()<CR>i 
-nnoremap <Leader>8 :call PhpDocSingle()<CR> 
-vnoremap <Leader>8 :call PhpDocRange()<CR> 
+inoremap <Leader>8 <ESC>:call PhpDocSingle()<CR>i
+nnoremap <Leader>8 :call PhpDocSingle()<CR>
+vnoremap <Leader>8 :call PhpDocRange()<CR>
 let g:pdv_cfg_Author = "Shiem Edelbrock <shiem.edelbrock@thecontrolgroup.com>"
+
+" // The switch of the Source Explorer 
+nmap <F8> :SrcExplToggle<CR> 
+
+" // Set the height of Source Explorer window 
+let g:SrcExpl_winHeight = 8 
+
+" // Set 100 ms for refreshing the Source Explorer 
+let g:SrcExpl_refreshTime = 100 
+
+" // Set "Enter" key to jump into the exact definition context 
+let g:SrcExpl_jumpKey = "<ENTER>" 
+
+" // Set "Space" key for back from the definition context 
+let g:SrcExpl_gobackKey = "<SPACE>" 
+
+" // In order to Avoid conflicts, the Source Explorer should know what plugins 
+" // are using buffers. And you need add their bufname into the list below 
+" // according to the command ":buffers!" 
+let g:SrcExpl_pluginList = [ 
+        \ "__Tag_List__", 
+        \ "_NERD_tree_", 
+        \ "Source_Explorer" 
+    \ ] 
+
+" // Enable/Disable the local definition searching, and note that this is not 
+" // guaranteed to work, the Source Explorer doesn't check the syntax for now. 
+" // It only searches for a match with the keyword according to command 'gd' 
+let g:SrcExpl_searchLocalDef = 1 
+
+" // Do not let the Source Explorer update the tags file when opening 
+let g:SrcExpl_isUpdateTags = 0 
+
+" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to 
+" // create/update the tags file 
+let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
+
+" // Set "<F12>" key for updating the tags file artificially 
+let g:SrcExpl_updateTagsKey = "<F12>" 
+
+" // Set "<F3>" key for displaying the previous definition in the jump list 
+let g:SrcExpl_prevDefKey = "<F3>" 
+
+" // Set "<F5>" key for displaying the next definition in the jump list 
+let g:SrcExpl_nextDefKey = "<F4>" 
+

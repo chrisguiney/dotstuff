@@ -1,9 +1,15 @@
-"TEST AREA
+"clone vundle, then open vim and run :BundleInstall to get all the magic
+"git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-"Shit I am testing that gets to graduate into the VIMRC
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 TEST AREA                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" items get to graduate from here into the big bad vimrc :-)
 
 
-"Use Vim settings, rather then Vi settings (much better!).
+
+"""""""""""""""""""""""""""""""" EOF TEST AREA """""""""""""""""""""""""""""""
+
 "This must be first, because it changes other options as a side effect.
 set nocompatible
 filetype plugin on
@@ -11,8 +17,6 @@ filetype plugin on
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required!
 Bundle "wesleyche/SrcExpl"
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
@@ -45,11 +49,32 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'mileszs/ack.vim'
 Bundle 'stephpy/vim-phpdoc'
-
+Bundle 'Solarized'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
 "load ftplugins and indent files
 filetype plugin on
 filetype indent on
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   THEMES                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"============== Tomorrow-Night Theme ==============
+set background=dark
+set guifont=Source\ Code\ Pro\ Light:h18
+colorscheme Tomorrow\-Night
+
+"============= Soloraized theme light =============
+    "set background=light
+    "set guifont=Source\ Code\ Pro:h18
+    "colors Solorized
+
+"=============  Solarized Theme Dark  =============
+    "set background=dark
+    "set guifont=Source\ Code\ Pro\ Light:h18
+    "colors Solorized
+
 
 set ofu=syntaxcomplete#Complete " Set omni-completion method.
 set omnifunc=syntaxcomplete#Complete
@@ -133,8 +158,7 @@ set t_Co=256
 
 " Color scheme
 let g:Powerline_symbols = 'fancy'
-set background=dark
-colors Tomorrow-Night
+
 
 " \ is the leader character
 let mapleader = "\\"
@@ -225,7 +249,6 @@ if has("gui_macvim")
     set macmeta
 endif
 
-set guifont=Source\ Code\ Pro\ Light:h18
 
 " code checking
 let g:syntastic_error_symbol='☹'

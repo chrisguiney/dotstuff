@@ -1,0 +1,73 @@
+#! /usr/local/bin/node
+var inquirer = require("inquirer");
+var exec = require('child_process').exec;
+var ProgressBar = require('progress');
+
+child = exec('git branch -r',
+  function (error, stdout, stderr) {
+    if (error !== null) {
+      console.log(error);
+      process.exit(1);
+    }
+    var branches = stdout.split('\n');
+    branches.forEach(function(val, index){
+        if(val.indexOf('->') != -1){
+            branches.move(index, 0);
+        }
+    })
+    inquirer.prompt({
+      type: "list",
+      name: "branch",
+      message: "Which branch would you like to push?",
+      choices: branches.clean(""),
+      filter: function( val ) { 
+        if(val.indexOf('->') != -1) return val.split('-> ')[1].replace('/', ' ');
+        else return val.replace('/', ' '); 
+      }
+    }, function( answers ) {
+
+var bar = new ProgressBar('Pushing ' + answers.branch + ': :bar', { incomplete: ' ', total: 50 });
+var timer = setInterval(function(){
+    bar.tick();
+  if (bar.complete) {
+    clearInterval(timer);
+  }
+}, 100);
+    exec('git push ' + answers.branch, function(err, stdout, stderr){
+    console.log('\n')
+        console.log(stdout);
+        console.log(stderr);
+        process.exit(0);
+      });
+    });
+
+
+
+
+});
+
+Array.prototype.move = function (old_index, new_index) {
+    while (old_index < 0) {
+        old_index += this.length;
+    }
+    while (new_index < 0) {
+        new_index += this.length;
+    }
+    if (new_index >= this.length) {
+        var k = new_index - this.length;
+        while ((k--) + 1) {
+            this.push(undefined);
+        }
+    }
+    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+    return this; // for testing purposes
+};
+Array.prototype.clean = function(deleteValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deleteValue) {         
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+};

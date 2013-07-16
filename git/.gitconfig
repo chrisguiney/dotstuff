@@ -1,42 +1,83 @@
-[alias]
-  c = commit -m
-  aa= !git add -A && git status
-  cob = checkout -b
-  pushdesign = !git push origin HEAD && git checkout design && git pull && git merge @{-1} && git push origin design && git status && git checkout @{-1}
-  s = !git status
-  l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
-  ll = log --stat --abbrev-commit
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  praise = !ruby /home/dev/praise.rb
-  df = diff --color --color-words --abbrev
 [user]
-	email = Shiem.Edelbrock@thecontrolgroup.com
-	name = Shiem Edelbrock
-[core]
-	excludesfile = /home/dev/.gitignore_global
+    name = Shiem Edelbrock
+    email = shiem.edelbrock@ambiguouspixel.com
+[credential]
+    helper = osxkeychain
 [color]
-	ui = always
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
 [apply]
-	whitespace = fix
+    whitespace = fix,space-before-tab,tab-in-indent,trailing-space
 [core]
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-	editor = vim
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+    whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+    editor = vim #<--- why would you use anything else?
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
 [merge]
-	log = true
+    log = true
 [diff]
-	tool = vimdiff
+    tool = vimdiff
+[alias]
+    #normal everyday aliases
+    c = commit
+    ca
+    aa= !git add -A && git status
+    cob = checkout -b
+    s = !git status
+    df = diff --color --color-words --abbrev
+
+
+    #ammed and use the last message, don't abuse it... with great power... comes great responsibility
+    amend-last = git commit -C HEAD --amend
+    amend = git commit --amend
+
+    #push to HEAD, checkout branch, pull merge, to OG branch, push, get status, and go back to OG branch
+    push-merge = !git s && git push origin HEAD && git checkout $1 && git pull origin $1 && git merge @{-1} && git push origin $1 && git status && git checkout @{-1}
+
+    #some pretty git logs
+    l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+    ll = log --stat --abbrev-commit
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+
+    #find a file
+    find = !sh -c 'git ls-tree -r --name-only HEAD | grep --color $1' -
+
+    #usefull to clean up a repo every once in a while
+    cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+
+    #remove deleted files
+    rm-deleted  = !git ls-files -z --deleted | xargs -0 git rm
+
+    #Some interactive pull/push aliases for repos with a bunch of branches and remotes (note: this requires my oh-so-hipster no exectuables)
+    pl = ! "g-pull"
+    ps = ! "g-push"
+
+    #tag stuff so releases stay organizes
+    taggit = "!git tag -f -a"
+    lasttag = describe --tags --abbrev=0
+    lt = describe --tags --abbrev=0
+
+    #stah stuff because I'm lazy and always forget to pop my stashes
+    stashit = "!git stash save"
+    slist = stash list
+    sshow = "!f() { git stash show stash^{/$*} -p; }; f"
+    sapply = "!f() { git stash apply stash^{/$*}; }; f"
+
+    #I have a crap ton of aliases, and sometimes I forget them...lists (and greps) them in case I'm to lazy to tab complete different attempts
+    alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort
+

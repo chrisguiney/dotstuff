@@ -27,7 +27,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/gundo.vim'
-Bundle 'tpope/vim-fugitive'
+Bundle 'fugitive.vim'
 Bundle 'tpope/vim-rails'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
@@ -208,8 +208,8 @@ map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 "fuzzyFinder maping
 map <leader>f :FufFile <CR>
-nmap <,-f> :FufFileWithCurrentBufferDir<CR>
-nmap <C-f> :FufFileWithFullCwd<CR>
+map f :FufFileWithCurrentBufferDir<CR>
+inoremap <C-f> :FufFileWithFullCwd<CR>
 
 "get the system clipboard to work with vim
 set clipboard=unnamed
@@ -242,10 +242,9 @@ highlight SyntasticWarningSign guifg=red guibg=black
 
 " Bubble single lines
 map <C-M-Up> ddkP
-map <C-M-Down> ddp
 " Bubble multiple lines
-vmap <C-M-Up> xkPv`[V`]
 vmap <C-M-Down> xp`[V`]
+vmap <C-M-Up> xkPv`[V`]
 
 
 " F1 - Unused

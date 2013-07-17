@@ -21,9 +21,20 @@ filetype plugin on
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle "wesleyche/SrcExpl"
-Bundle 'Lokaltog/vim-easymotion'
+Bundle 'wesleyche/SrcExpl'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'zhaocai/linepower.vim'
+Bundle 'Shougo/unite.vim'
+Bundle 't9md/vim-unite-ack'
+Bundle 'h1mesuke/unite-outline'
+Bundle 'ujihisa/unite-colorscheme'
+Bundle 'ujihisa/unite-font'
+Bundle 'tacroe/unite-mark'
+Bundle 'tsukkee/unite-tag'
+Bundle 'sgur/unite-qf'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Lokaltog/powerline'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'

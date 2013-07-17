@@ -6,7 +6,11 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " items get to graduate from here into the big bad vimrc :-)
 
-
+inoremap <leader>; <C-R>=Semicolonfun()<CR>     
+fun! Semicolonfun() "{{{
+  call setline(line('.'), substitute(getline('.'), '\s*$', ';', ''))
+  return "\<End>"
+endfunction "}}}
 
 """""""""""""""""""""""""""""""" EOF TEST AREA """""""""""""""""""""""""""""""
 

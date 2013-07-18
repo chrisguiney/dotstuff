@@ -5,6 +5,9 @@
 "                                 TEST AREA                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " items get to graduate from here into the big bad vimrc :-)
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+let g:vimshell_prompt =  '$ '
+
 
 inoremap <leader>; <C-R>=Semicolonfun()<CR>     
 fun! Semicolonfun() "{{{
@@ -66,6 +69,9 @@ Bundle 'mileszs/ack.vim'
 Bundle 'stephpy/vim-phpdoc'
 Bundle 'Solarized'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Bundle 'shemerey/vim-peepopen'
+Bundle 'airblade/vim-rooter'
+Bundle 'Shougo/vimshell.vim'
 
 "load ftplugins and indent files
 filetype plugin on
@@ -153,11 +159,6 @@ set ttymouse=xterm2
 
 "hide buffers when not displayed
 set hidden
-
-"dont load csapprox if we no gui support - silences an annoying warning
-if !has("gui")
-    let g:CSApprox_loaded = 1
-endif
 
 "map Q to something useful
 noremap Q gq

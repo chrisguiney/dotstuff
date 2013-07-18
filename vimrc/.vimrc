@@ -5,6 +5,9 @@
 "                                 TEST AREA                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " items get to graduate from here into the big bad vimrc :-)
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+let g:vimshell_prompt =  '$ '
+
 
 
 
@@ -64,6 +67,7 @@ Bundle 'Solarized'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Bundle 'shemerey/vim-peepopen'
 Bundle 'airblade/vim-rooter'
+Bundle 'Shougo/vimshell.vim'
 
 "load ftplugins and indent files
 filetype plugin on

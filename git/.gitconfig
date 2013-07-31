@@ -35,8 +35,8 @@
 [alias]
     #normal everyday aliases
     c = commit
-    ca
-    aa= !git add -A && git status
+    sync = git pull && git push
+    aa = !git add -A && git status
     cob = checkout -b
     s = !git status
     df = diff --color --color-words --abbrev

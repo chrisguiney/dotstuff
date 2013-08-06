@@ -18,8 +18,9 @@ endfunction "}}}
 """""""""""""""""""""""""""""""" EOF TEST AREA """""""""""""""""""""""""""""""
 
 "This must be first, because it changes other options as a side effect.
-set nocompatible
-filetype plugin on
+
+filetype plugin indent on
+syntax on
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -72,10 +73,18 @@ Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Bundle 'shemerey/vim-peepopen'
 Bundle 'airblade/vim-rooter'
 Bundle 'Shougo/vimshell.vim'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
+Bundle 'xuhdev/SingleCompile'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'Blackrush/vim-gocode'
 
 "load ftplugins and indent files
-filetype plugin on
-filetype indent on
+filetype off
+filetype plugin indent off
+set runtimepath+=/usr/local/opt/go/misc/vim
+filetype plugin indent on
+syntax on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   THEMES                                   "
@@ -263,6 +272,7 @@ nmap <C-w> :%s/\s\+$//<CR>
 " some custom macvim stuff
 if has("gui_macvim")
     set macmeta
+    set antialias
 endif
 
 

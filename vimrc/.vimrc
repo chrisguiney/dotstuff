@@ -8,12 +8,17 @@
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 
-
 inoremap <leader>; <C-R>=Semicolonfun()<CR>     
 fun! Semicolonfun() "{{{
   call setline(line('.'), substitute(getline('.'), '\s*$', ';', ''))
   return "\<End>"
 endfunction "}}}
+
+function! Editvimrc()
+    :e $MYVIMRC
+endfunction
+command! Editvimrc call Editvimrc()
+
 
 """""""""""""""""""""""""""""""" EOF TEST AREA """""""""""""""""""""""""""""""
 
@@ -25,6 +30,7 @@ syntax on
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Bundle 'tomtom/tcomment_vim'
 Bundle 'wesleyche/SrcExpl'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'zhaocai/linepower.vim'
@@ -38,7 +44,6 @@ Bundle 'tsukkee/unite-tag'
 Bundle 'sgur/unite-qf'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Shougo/vimproc.vim'
-Bundle 'Lokaltog/powerline'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
@@ -91,8 +96,9 @@ syntax on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "============== Tomorrow-Night Theme ==============
+
 set background=dark
-set guifont=Source\ Code\ Pro\ Light:h18
+set guifont=SauceCodePowerline-LightForPowerline:h18
 colorscheme Tomorrow\-Night
 
 "============= Soloraized theme light =============
@@ -182,7 +188,7 @@ let g:syntastic_enable_signs=1
 set t_Co=256
 
 " Color scheme
-let g:Powerline_symbols = 'fancy'
+ let g:Powerline_symbols = 'fancy'
 
 
 " \ is the leader character

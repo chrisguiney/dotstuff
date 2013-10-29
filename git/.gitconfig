@@ -81,3 +81,5 @@
     #I have a crap ton of aliases, and sometimes I forget them...lists (and greps) them in case I'm to lazy to tab complete different attempts
     alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort
 
+[push]
+	default = simple

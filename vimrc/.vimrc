@@ -8,6 +8,10 @@
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
 inoremap <leader>; <C-R>=Semicolonfun()<CR>     
 fun! Semicolonfun() "{{{
   call setline(line('.'), substitute(getline('.'), '\s*$', ';', ''))
@@ -32,7 +36,6 @@ call vundle#rc()
 
 Bundle 'tomtom/tcomment_vim'
 Bundle 'wesleyche/SrcExpl'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'zhaocai/linepower.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 't9md/vim-unite-ack'
@@ -43,6 +46,7 @@ Bundle 'tacroe/unite-mark'
 Bundle 'tsukkee/unite-tag'
 Bundle 'sgur/unite-qf'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/powerline'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/vundle'
@@ -98,7 +102,7 @@ syntax on
 "============== Tomorrow-Night Theme ==============
 
 set background=dark
-set guifont=SauceCodePowerline-LightForPowerline:h18
+set guifont=SauceCodePowerline-Light:h18
 colorscheme Tomorrow\-Night
 
 "============= Soloraized theme light =============

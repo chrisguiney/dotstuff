@@ -26,7 +26,8 @@
 # A few utility functions to make it easy and re-usable to draw segmented prompts
  
 CURRENT_BG='NONE'
-SEGMENT_SEPARATOR='⮀'
+SEGMENT_SEPARATOR=''
+BRANCH_SYMBOL=''
  
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
@@ -79,7 +80,7 @@ prompt_git() {
     else
       prompt_segment white black
     fi
-    echo -n "${ref/refs\/heads\//⭠ }$dirty"
+    echo -n "${ref/refs\/heads\//$BRANCH_SYMBOL }$dirty"
   fi
 }
  
@@ -95,7 +96,7 @@ prompt_dir() {
 prompt_status() {
   local symbols
   symbols=()
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}☹"
+  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}✘"
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚇"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}☺"
  

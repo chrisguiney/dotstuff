@@ -22,11 +22,11 @@ bindkey -v
 
 # if mode indicator wasn't setup by theme, define default
 if [[ "$NORMAL_INDICATOR" == "" ]]; then
-  NORMAL_INDICATOR="%{$fg[green]%}⮂%{$fg[black]$bg[green]%} NORMAL %{$reset_color%}"
+  NORMAL_INDICATOR="%{$fg[green]%}%{$fg[black]$bg[green]%} NORMAL %{$reset_color%}"
 fi
 
 if [[ "$INSERT_INDICATOR" == "" ]]; then
-  INSERT_INDICATOR="%{$fg[white]%}⮂%{$fg[black]$bg[white]%} INSERT %{$reset_color%}"
+  INSERT_INDICATOR="%{$fg[white]%}%{$fg[black]$bg[white]%} INSERT %{$reset_color%}"
 fi
 
 function vi_mode_prompt_info() {
